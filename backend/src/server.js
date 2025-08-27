@@ -7,6 +7,7 @@ require('dotenv').config();
 const { connectToDatabase } = require('./utils/db');
 const authRoutes = require('./routes/auth.routes');
 const adminRoutes = require('./routes/admin.routes');
+const studentRoutes = require('./routes/student.routes');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
+app.use('/uploads', express.static(require('path').join(process.cwd(), 'uploads')));
 
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok' });
@@ -24,6 +26,7 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/student', studentRoutes);
 
 const port = process.env.PORT || 5000;
 
