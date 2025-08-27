@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../lib/api';
+import ChatWidget from '../components/ChatWidget';
 
 const tabs = ['Classes', 'Attendance', 'Notes', 'Exam schedule', 'Assignments', 'Timetable', 'Request leave'];
 
@@ -200,7 +201,10 @@ export default function StudentDashboard() {
           <button type="submit">Send request</button>
         </form>
       )}
+      <ChatWidget />
     </div>
   );
 }
+ 
+//
 

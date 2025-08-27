@@ -8,6 +8,7 @@ const { connectToDatabase } = require('./utils/db');
 const authRoutes = require('./routes/auth.routes');
 const adminRoutes = require('./routes/admin.routes');
 const studentRoutes = require('./routes/student.routes');
+const chatRoutes = require('./routes/chat.routes');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/student', studentRoutes);
+app.use('/api/chat', chatRoutes);
 
 const port = process.env.PORT || 5000;
 
