@@ -1,0 +1,99 @@
+Build a Smart College LMS using MERN + Python (FastAPI) + Gemini with the following requirements:
+
+Landing Page
+
+Static landing page.
+
+Hidden admin route /admin/:collegeId.
+
+Login button → login page.
+
+Authentication
+
+JWT-based login/register system.
+
+Roles: Admin, Teacher, Student.
+
+Admin Dashboard
+
+Buttons to create teacher and student accounts.
+
+Teacher form: name, faculty, email, password, subject.
+
+Student form: name, batch, faculty, email, password.
+
+Student Dashboard
+
+View: classes, attendance, notes, assignments, timetable, exam schedule.
+
+Submit assignments.
+
+View grades + exam results.
+
+Request leave via calendar form → sends email (Nodemailer).
+
+Career Recommendation widget (fetches from Python FastAPI).
+
+Chatbot widget (Gemini API → answers timetable/assignments queries).
+
+Teacher Dashboard
+
+Choose faculty + batch.
+
+Add: classes, assignments, notes, timetable, exam schedule.
+
+Manage attendance (CRUD).
+
+View submissions → grade assignments.
+
+Upload exam results.
+
+Request leave (email).
+
+Database Schema (MongoDB)
+
+users: name, email, password, role, faculty, batch, subject.
+
+assignments: title, description, faculty, batch, teacherId, dueDate, submissions [{ studentId, answer, grade }].
+
+attendance: classDate, faculty, batch, teacherId, records [{ studentId, status }].
+
+examResults: studentId, subject, marks, grade.
+
+Python FastAPI Service
+
+Endpoint: /recommend/{studentId}.
+
+Returns career recommendations based on student marks (rule-based or simple ML).
+
+Gemini Chatbot
+
+Backend route /api/chat.
+
+Input: { userId, message }.
+
+Fetch user + assignment/timetable data from DB.
+
+Send context + question to Gemini API.
+
+Return AI-generated response.
+
+Leave Request
+
+Student leave request form → triggers Nodemailer email to college.
+
+Hackathon Demo Flow
+
+Admin creates teacher & student.
+
+Teacher adds assignment.
+
+Student views & submits assignment.
+
+Teacher grades submission.
+
+Student sees grade + career recommendation.
+
+Student requests leave (email sent).
+
+Student asks chatbot “When is my next class?” → Gemini replies.
