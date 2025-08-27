@@ -16,6 +16,8 @@ export default function Login() {
       const info = await login(email, password);
       const secret = import.meta.env.VITE_ADMIN_SECRET || 'admin-portal-9b2f7c';
       if (info?.role === 'admin') navigate(`/${secret}`);
+      else if (info?.role === 'teacher') navigate('/teacher');
+      else if (info?.role === 'student') navigate('/student');
       else navigate('/');
     } catch (err) {
       setError(err?.response?.data?.message || 'Login failed');
