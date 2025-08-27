@@ -7,9 +7,10 @@ const { User, ROLES } = require('../models/User');
 const router = express.Router();
 
 router.post('/login', asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
     if (!email || !password) return res.status(400).json({ message: 'Email and password required' });
 
+    email = String(email).toLowerCase().trim();
     const user = await User.findOne({ email });
     if (!user) return res.status(401).json({ message: 'Invalid credentials' });
 
