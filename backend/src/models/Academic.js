@@ -4,7 +4,10 @@ const ClassSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: String,
     startAt: { type: Date, required: true },
-    endAt: { type: Date, required: true }
+    endAt: { type: Date, required: true },
+    faculty: String,
+    batch: String,
+    teacherId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 
 const AttendanceSchema = new mongoose.Schema({
@@ -15,19 +18,28 @@ const AttendanceSchema = new mongoose.Schema({
 
 const NoteSchema = new mongoose.Schema({
     title: { type: String, required: true },
-    content: { type: String, required: true }
+    content: { type: String },
+    fileUrl: String,
+    faculty: String,
+    batch: String,
+    teacherId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 
 const ExamSchema = new mongoose.Schema({
     subject: { type: String, required: true },
     date: { type: Date, required: true },
-    venue: String
+    venue: String,
+    faculty: String,
+    batch: String
 }, { timestamps: true });
 
 const AssignmentSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: String,
-    dueDate: { type: Date, required: true }
+    dueDate: { type: Date, required: true },
+    faculty: String,
+    batch: String,
+    teacherId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 
 const AssignmentSubmissionSchema = new mongoose.Schema({
@@ -35,11 +47,15 @@ const AssignmentSubmissionSchema = new mongoose.Schema({
     studentId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     fileUrl: { type: String, required: true },
     originalName: String,
-    submittedAt: { type: Date, default: Date.now }
+    submittedAt: { type: Date, default: Date.now },
+    grade: String,
+    feedback: String
 }, { timestamps: true });
 
 const TimetableSchema = new mongoose.Schema({
     day: { type: String, required: true },
+    faculty: String,
+    batch: String,
     periods: [{
         time: String,
         subject: String,
